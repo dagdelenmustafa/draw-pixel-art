@@ -1,0 +1,40 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+#set environment variables 
+env:
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  CLIENT_APP_NAME: ${{ 'draw-pixel-art-app' }}
+  SERVER_APP_NAME: ${{ 'draw-pixel-art-service' }}
+
+jobs:
+      
+  deploy:
+    name: Deploy to Heroku
+    runs-on: ubuntu-18.04
+    steps:
+
+    # Clone the repository
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    # Build Docker image
+    - name: Build images
+      run: docker build ./draw-pixel-art-app/Dockerfile --file Dockerfile --tag image && docker build ./draw-pixel-art-service/Dockerfile --file Dockerfile --tag image
+
+    - name: Docker build
+      run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+
+    # Push the Docker image to Heroku Container Registry
+    - name: Publish
+      run: |
+        heroku container:push web -a $CLIENT_APP_NAME
+        heroku container:release web -a $CLIENT_APP_NAME
+        heroku container:push web -a $SERVER_APP_NAME
+        heroku container:release web -a $SERVER_APP_NAME
+        
