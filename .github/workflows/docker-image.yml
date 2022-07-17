@@ -25,7 +25,7 @@ jobs:
 
     # Build Docker image
     - name: Build images
-      run: docker build . --file draw-pixel-art-app/Dockerfile --tag image && docker build . --file draw-pixel-art-service/Dockerfile --tag image
+      run: docker build . --file draw-pixel-art-app/Dockerfile --tag image 
 
     - name: Docker build
       run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
@@ -35,6 +35,4 @@ jobs:
       run: |
         heroku container:push web -a $CLIENT_APP_NAME
         heroku container:release web -a $CLIENT_APP_NAME
-        heroku container:push web -a $SERVER_APP_NAME
-        heroku container:release web -a $SERVER_APP_NAME
         
