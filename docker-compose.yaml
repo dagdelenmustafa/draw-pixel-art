@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+
+  draw-pixel-art-service:
+    build:
+      dockerfile: .
+      context: ./draw-pixel-art-service
+    container_name: draw-pixel-art-service
+    ports:
+      - 3001:3001
+    environment:
+      - REDIS_URL=redis://redis
+    depends_on:
+      - redis
+    links:
+      - redis
+
+  draw-pixel-art-app:
+    build:
+      dockerfile: .
+      context: ./draw-pixel-art-app
+    container_name: draw-pixel-art-app
+    ports:
+      - 3000:3000
+    depends_on:
+      - draw-pixel-art-service
