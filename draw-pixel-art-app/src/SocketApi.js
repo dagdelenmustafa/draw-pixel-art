@@ -1,7 +1,7 @@
 import io from "socket.io-client";
 
 let socket;
-const serverURL = process.env.SERVER_URL || "http://localhost:3001";
+const serverURL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
 
 export const init = (canvasId) => {
   console.log("Connecting...");

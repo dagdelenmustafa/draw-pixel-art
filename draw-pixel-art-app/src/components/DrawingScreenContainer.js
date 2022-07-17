@@ -26,7 +26,7 @@ function DrawingScreenContainer() {
   const [selectedColor, setSelectedColor] = useState("#e9c46a");
   const { points, setPoints } = usePoints();
   const canvasRef = useRef();
-  const serverURL = process.env.SERVER_URL || "http://localhost:3001";
+  const serverURL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
 
   useEffect(() => {
     async function fetchInitialData() {
