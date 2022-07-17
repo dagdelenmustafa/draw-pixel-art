@@ -1,11 +1,12 @@
 import io from "socket.io-client";
 
 let socket;
+const serverURL = process.env.SERVER_URL || "http://localhost:3001";
 
 export const init = (canvasId) => {
   console.log("Connecting...");
 
-  socket = io("http://localhost:3001", {
+  socket = io(serverURL, {
     transports: ["websocket"],
     query: `canvas=${canvasId}`,
   });

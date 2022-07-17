@@ -33,6 +33,6 @@ app.use(function (err, req, res, next) {
 const server = http.createServer(app);
 io(server);
 
-server.listen(3001, () => {
-  console.log("We are on port 3001");
+server.listen(process.env.PORT || 3001, () => {
+  console.log("Server started");
 });

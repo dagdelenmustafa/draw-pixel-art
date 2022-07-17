@@ -26,12 +26,11 @@ function DrawingScreenContainer() {
   const [selectedColor, setSelectedColor] = useState("#e9c46a");
   const { points, setPoints } = usePoints();
   const canvasRef = useRef();
+  const serverURL = process.env.SERVER_URL || "http://localhost:3001";
 
   useEffect(() => {
     async function fetchInitialData() {
-      const resp = await axios.get(
-        `http://localhost:3001/init?canvasId=${canvasId}`
-      );
+      const resp = await axios.get(`${serverURL}/init?canvasId=${canvasId}`);
       const { points, canvasSize } = resp.data;
       setCanvasSize(parseInt(canvasSize));
       setPoints(points);

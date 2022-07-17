@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
 function SettingsForm() {
+  const serverURL = process.env.SERVER_URL || "http://localhost:3001";
   const [canvasSize, setCanvasSize] = useState(16);
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ function SettingsForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const canvasId = uuidv4();
-    await axios.post("http://localhost:3001/init", {
+    await axios.post(`${serverURL}/init`, {
       canvasId,
       canvasSize,
     });
