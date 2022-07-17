@@ -32,8 +32,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CanvasProvider>
-        <Header />
         <Router>
+          <Header />
           <Routes>
             <Route exact path="/" element={<SettingsForm />}></Route>
             <Route

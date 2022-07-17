@@ -11,7 +11,6 @@ import axios from "axios";
 
 function SettingsForm() {
   const serverURL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
-  console.log(serverURL);
   const [canvasSize, setCanvasSize] = useState(16);
   const navigate = useNavigate();
 
