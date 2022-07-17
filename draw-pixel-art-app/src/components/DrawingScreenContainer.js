@@ -18,6 +18,8 @@ import {
 import axios from "axios";
 
 import { usePoints } from "../contexts/CanvasContext";
+import { useHeaderContext } from "../contexts/HeaderContext";
+
 import Cell from "./Cell";
 
 function DrawingScreenContainer() {
@@ -25,6 +27,7 @@ function DrawingScreenContainer() {
   const { canvasId } = useParams();
   const [selectedColor, setSelectedColor] = useState("#e9c46a");
   const { points, setPoints } = usePoints();
+  const { setIsShareable } = useHeaderContext();
   const canvasRef = useRef();
   const serverURL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
 
@@ -36,6 +39,7 @@ function DrawingScreenContainer() {
       setPoints(points);
     }
 
+    setIsShareable(true);
     init(canvasId);
     fetchInitialData();
     subscribeReset(() => {

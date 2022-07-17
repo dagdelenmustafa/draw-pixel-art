@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 import Grid from "@mui/material/Grid";
@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
+import { useHeaderContext } from "../contexts/HeaderContext";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
@@ -13,7 +14,11 @@ function SettingsForm() {
   const serverURL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
   const [canvasSize, setCanvasSize] = useState(16);
   const navigate = useNavigate();
+  const { setIsShareable } = useHeaderContext();
 
+  useEffect(() => {
+    setIsShareable(false);
+  }, []);
   const handleSliderChange = (event, newValue) => {
     setCanvasSize(newValue);
   };

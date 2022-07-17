@@ -13,7 +13,7 @@ export const init = async () => {
 };
 
 export const hSet = async (key, data) => {
-  await client.hSet(key, data, "EX", 60 * 60 * 24 * 7);
+  await client.hSet(key, data);
 };
 
 export const hGetAll = async (key) => {
@@ -36,5 +36,5 @@ export const get = async (key) => {
 };
 
 export const set = async (key, data) => {
-  await client.set(key, data, "EX", 60 * 60 * 24 * 7);
+  await client.set(key, data);
 };

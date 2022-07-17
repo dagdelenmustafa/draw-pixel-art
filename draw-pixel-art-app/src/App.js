@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import "./App.css";
 import { CanvasProvider } from "./contexts/CanvasContext";
+import { HeaderProvider } from "./contexts/HeaderContext";
 import DrawingScreenContainer from "./components/DrawingScreenContainer";
 import SettingsForm from "./components/SettingsForm";
 import Header from "./components/Header";
@@ -32,16 +33,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CanvasProvider>
-        <Router>
-          <Header />
-          <Routes>
-            <Route exact path="/" element={<SettingsForm />}></Route>
-            <Route
-              path="/draw/:canvasId"
-              element={<DrawingScreenContainer />}
-            ></Route>
-          </Routes>
-        </Router>
+        <HeaderProvider>
+          <Router>
+            <Header />
+            <Routes>
+              <Route exact path="/" element={<SettingsForm />}></Route>
+              <Route
+                path="/draw/:canvasId"
+                element={<DrawingScreenContainer />}
+              ></Route>
+            </Routes>
+          </Router>
+        </HeaderProvider>
       </CanvasProvider>
     </ThemeProvider>
   );
