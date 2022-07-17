@@ -33,6 +33,6 @@ jobs:
     # Push the Docker image to Heroku Container Registry
     - name: Publish
       run: |
-        heroku container:push web -a $CLIENT_APP_NAME
-        heroku container:release web -a $CLIENT_APP_NAME
+        heroku container:push web -a draw-pixel-art-app
+        heroku container:release web -a draw-pixel-art-app
         
