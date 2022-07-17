@@ -25,7 +25,7 @@ jobs:
 
     # Build Docker image
     - name: Build images
-      run: docker build ./draw-pixel-art-app --file Dockerfile --tag image && docker build ./draw-pixel-art-service --file Dockerfile --tag image
+      run: docker build . --file draw-pixel-art-app/Dockerfile --tag image && docker build . --file draw-pixel-art-service/Dockerfile --tag image
 
     - name: Docker build
       run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
