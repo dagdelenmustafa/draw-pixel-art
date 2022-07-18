@@ -1,6 +1,6 @@
 # PIXEL ART
 
-####[DEMO](https://draw-pixel-art-app.herokuapp.com) on Heroku
+[DEMO](https://draw-pixel-art-app.herokuapp.com) on Heroku
 
 <p style="text-align:center">
     <img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.svg" width="100" > 
