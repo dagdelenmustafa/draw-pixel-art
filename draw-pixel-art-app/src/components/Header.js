@@ -67,15 +67,22 @@ export default function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="third" elevation={1}>
         <Toolbar>
-          {/* <IconButton
+          <IconButton
             size="large"
             edge="start"
             color="secondary"
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
-          </IconButton> */}
+            <Box
+              component="img"
+              sx={{
+                height: 40,
+                width: 40,
+              }}
+              src="/logo192.png"
+            />
+          </IconButton>{" "}
           <Typography
             variant="h6"
             component="div"
