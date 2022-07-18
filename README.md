@@ -26,11 +26,8 @@ git clone https://github.com/dagdelenmustafa/draw-pixel-art.git
 ``` bash
 docker-compose up
 ```
-<<<<<<< Updated upstream
-=======
 
 ## UI Samples
 <img src="/assets/ui1.png"/>
 <img src="/assets/ui2.png"/>
 <img src="/assets/ui3.png"/>
->>>>>>> Stashed changes
