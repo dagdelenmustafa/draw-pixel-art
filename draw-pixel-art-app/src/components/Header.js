@@ -87,7 +87,7 @@ export default function Header() {
           </Typography>
           {isShareable && (
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+              <Tooltip>
                 <ShareIcon
                   sx={{ cursor: "pointer" }}
                   color="secondary"
