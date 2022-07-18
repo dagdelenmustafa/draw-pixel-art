@@ -81,8 +81,9 @@ export default function Header() {
                 width: 40,
               }}
               src="/logo192.png"
+              onClick={() => navigate("/")}
             />
-          </IconButton>{" "}
+          </IconButton>
           <Typography
             variant="h6"
             component="div"
