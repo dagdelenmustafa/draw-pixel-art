@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import "./App.css";
 import { CanvasProvider } from "./contexts/CanvasContext";
 import { HeaderProvider } from "./contexts/HeaderContext";
@@ -27,9 +25,6 @@ const theme = createTheme({
 });
 
 function App() {
-  useEffect(() => {
-    document.title = "Pixel Art";
-  }, []);
   return (
     <ThemeProvider theme={theme}>
       <CanvasProvider>

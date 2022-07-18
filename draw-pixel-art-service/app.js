@@ -19,7 +19,7 @@ app.use(cors());
 app.use("/", indexRouter);
 
 app.use(function (req, res, next) {
-  next(createError(404));
+  next(res.send(404));
 });
 
 app.use(function (err, req, res, next) {

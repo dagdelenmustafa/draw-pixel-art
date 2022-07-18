@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { CirclePicker } from "react-color";
 import { useParams } from "react-router-dom";
-import { exportComponentAsPNG } from "react-component-export-image";
+import { saveAs } from "file-saver";
 
 import {
   init,
@@ -28,7 +28,6 @@ function DrawingScreenContainer() {
   const [selectedColor, setSelectedColor] = useState("#e9c46a");
   const { points, setPoints } = usePoints();
   const { setIsShareable } = useHeaderContext();
-  const canvasRef = useRef();
   const serverURL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
 
   useEffect(() => {
@@ -50,7 +49,16 @@ function DrawingScreenContainer() {
         return { ...prev, ...point };
       });
     });
-  }, [canvasId, setPoints]);
+  }, [canvasId, serverURL, setIsShareable, setPoints]);
+
+  const exportAsPNG = async () => {
+    const resp = await axios.get(
+      `${serverURL}/canvas/create?canvasId=${canvasId}`,
+      { responseType: "blob" }
+    );
+    console.log(resp.data);
+    saveAs(resp.data, "PixelArtCanvas");
+  };
 
   const changeSelectedColor = (color, event) => {
     setSelectedColor(color.hex);
@@ -100,7 +108,7 @@ function DrawingScreenContainer() {
         </Box>
 
         <Box sx={{ width: "100%" }}>
-          <div ref={canvasRef} className="canvasArea">
+          <div className="canvasArea">
             {[...Array(canvasSize).keys()].map((v) => (
               <Grid
                 container
@@ -165,7 +173,7 @@ function DrawingScreenContainer() {
             fullWidth
             variant="contained"
             sx={{ mb: 2 }}
-            onClick={() => exportComponentAsPNG(canvasRef)}
+            onClick={exportAsPNG}
           >
             Export
           </Button>
